@@ -8,21 +8,21 @@
 
 import UIKit
 
-class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    override func viewDidLoad() {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
-    
-    
-    
-}
+//class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+//    
+//    override func viewDidLoad() {
+//        <#code#>
+//    }
+//    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//    
+//    
+//    
+//    
+//}

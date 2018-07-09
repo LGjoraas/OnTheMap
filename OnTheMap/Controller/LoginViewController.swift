@@ -8,8 +8,42 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextViewDelegate {
 
+    
+    
+    
+    @IBOutlet weak var signUpTextView: UITextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let attributedString = NSMutableAttributedString(string: "Don't have an account? Sign Up")
+        attributedString.addAttribute(.link, value: "https://auth.udacity.com/sign-up", range: NSRange(location: 23, length: 7))
+        
+        signUpTextView.attributedText = attributedString
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL, options: [:])
+        return false
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+    
+    
+    
+    
+    
+    
     // MARK: GET Method for multiple student locations at one time
 /*
      To get multiple student locations at one time, you'll want to use the following API method:
@@ -203,5 +237,5 @@ class LoginViewController: UIViewController {
 
  */
     
-}
+
 

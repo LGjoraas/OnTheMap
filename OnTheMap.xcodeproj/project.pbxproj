@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A558593420E53496004B418F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A558593320E53496004B418F /* TableViewCell.swift */; };
 		A558593620E53D94004B418F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A558593520E53D94004B418F /* Client.swift */; };
 		A59D7BF020E3C95600E2FB7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D7BEF20E3C95600E2FB7B /* AppDelegate.swift */; };
 		A59D7BF220E3C95600E2FB7B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D7BF120E3C95600E2FB7B /* LoginViewController.swift */; };
@@ -24,7 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A558593320E53496004B418F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		A558593520E53D94004B418F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A59D7BEC20E3C95600E2FB7B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A59D7BEF20E3C95600E2FB7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				A5A874AF20E43566009971DF /* LocationViewController.swift */,
 				A5A874B120E4393C009971DF /* LocationConfirmViewController.swift */,
 				A5A874AD20E43437009971DF /* ListTableView.swift */,
-				A558593320E53496004B418F /* TableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -198,7 +195,6 @@
 				A5C0D99920F3F83A0027B1AD /* StudentLocation.swift in Sources */,
 				A59D7BF220E3C95600E2FB7B /* LoginViewController.swift in Sources */,
 				A5A874A820E3ED94009971DF /* Constants.swift in Sources */,
-				A558593420E53496004B418F /* TableViewCell.swift in Sources */,
 				A5A874B220E4393C009971DF /* LocationConfirmViewController.swift in Sources */,
 				A5A874A620E3EC6A009971DF /* GCDBlackBox.swift in Sources */,
 				A5A874AC20E414AB009971DF /* MapViewController.swift in Sources */,

@@ -8,19 +8,30 @@
 
 import UIKit
 
-class ListTableView: UIViewController/*, UITableViewDelegate, UITableViewDataSource */{
+class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    /*func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }*/
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+        
+        let studentInfo = StudentLocation.allLocations[indexPath.row]
+        
+        if let firstNamne = studentInfo.firstName, let lastName = studentInfo.lastName {
+            cell.textLabel?.text = firstNamne + " " + lastName
+        }
+        if let subtitle = studentInfo.mediaURL {
+            cell.detailTextLabel?.text = subtitle
+        }
+        return cell
+    }
     
     
 }

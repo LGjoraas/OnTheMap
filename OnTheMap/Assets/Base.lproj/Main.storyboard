@@ -100,7 +100,7 @@
                                 <rect key="frame" x="0.0" y="76" width="375" height="542"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" textLabel="PSL-OS-j39" detailTextLabel="zqa-NL-oQN" imageView="kbI-gJ-oME" rowHeight="80" style="IBUITableViewCellStyleSubtitle" id="ewO-fH-Kih" customClass="TableViewCell" customModule="OnTheMap" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" textLabel="PSL-OS-j39" detailTextLabel="zqa-NL-oQN" imageView="kbI-gJ-oME" rowHeight="80" style="IBUITableViewCellStyleSubtitle" id="ewO-fH-Kih">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ewO-fH-Kih" id="vhB-WD-9c5">
@@ -129,6 +129,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="7Gv-cL-xVG" id="vjo-so-eMn"/>
+                                    <outlet property="delegate" destination="7Gv-cL-xVG" id="PcH-aK-iPl"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

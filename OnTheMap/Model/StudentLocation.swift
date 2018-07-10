@@ -17,6 +17,7 @@ struct StudentLocation {
     let longitude: Double?
     let mediaURL: String?
     
+    static var allLocations = [StudentLocation]()
     // MARK: Initializers
     
     // construct a StudentLocation from a dictionary
@@ -35,6 +36,7 @@ struct StudentLocation {
         // iterate through array of dictionaries, each StudentLocation is a dictionary
         for result in results {
             locations.append(StudentLocation(dictionary: result))
+            allLocations.append(StudentLocation(dictionary: result))
         }
         
         return locations

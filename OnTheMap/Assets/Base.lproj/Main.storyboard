@@ -25,6 +25,9 @@
                                 <state key="normal" title="LOG IN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Stv-Cs-Y5P"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="qEq-9w-5qp">
                                 <rect key="frame" x="129" y="97" width="100" height="100"/>
@@ -33,22 +36,22 @@
                                     <constraint firstAttribute="width" constant="100" id="jNz-r7-IQw"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="Sw4-3w-4Fp">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="24" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sw4-3w-4Fp">
                                 <rect key="frame" x="51" y="239" width="273" height="37"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="ZTJ-5U-biD">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="24" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZTJ-5U-biD">
                                 <rect key="frame" x="51" y="284" width="273" height="37"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yuJ-5R-2fO">
-                                <rect key="frame" x="51" y="382" width="273" height="23"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yuJ-5R-2fO">
+                                <rect key="frame" x="51" y="382" width="273" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -57,6 +60,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="D5C-zn-rsY" secondAttribute="trailing" constant="51" id="0dh-lv-L1y"/>
                             <constraint firstItem="Sw4-3w-4Fp" firstAttribute="top" secondItem="qEq-9w-5qp" secondAttribute="bottom" constant="42" id="52A-oT-8DD"/>
                             <constraint firstItem="yuJ-5R-2fO" firstAttribute="top" secondItem="D5C-zn-rsY" secondAttribute="bottom" constant="8" id="7aN-5N-6rF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yuJ-5R-2fO" secondAttribute="bottom" constant="247" id="FMT-b1-f2m"/>
                             <constraint firstItem="ZTJ-5U-biD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="MPb-K8-Oqm"/>
                             <constraint firstItem="qEq-9w-5qp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="129" id="OJh-7i-Jjc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yuJ-5R-2fO" secondAttribute="trailing" constant="51" id="SRJ-Mu-9Ah"/>
@@ -64,7 +68,6 @@
                             <constraint firstItem="ZTJ-5U-biD" firstAttribute="top" secondItem="Sw4-3w-4Fp" secondAttribute="bottom" constant="8" id="ZtI-qp-Dgg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qEq-9w-5qp" secondAttribute="trailing" constant="146" id="bV8-3n-xdQ"/>
                             <constraint firstItem="qEq-9w-5qp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="77" id="dlQ-Aw-4NL"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yuJ-5R-2fO" secondAttribute="bottom" constant="262" id="dzj-EI-1fJ"/>
                             <constraint firstItem="Sw4-3w-4Fp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="mvB-gj-N1o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Sw4-3w-4Fp" secondAttribute="trailing" constant="51" id="nre-T6-inw"/>
                             <constraint firstItem="yuJ-5R-2fO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="pto-bX-BD8"/>
@@ -75,6 +78,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="h8x-pF-PdQ"/>
                     <connections>
+                        <outlet property="emailTextField" destination="Sw4-3w-4Fp" id="w2P-b0-gxf"/>
+                        <outlet property="passwordTextField" destination="ZTJ-5U-biD" id="WL3-5K-qT2"/>
                         <outlet property="signUpTextView" destination="yuJ-5R-2fO" id="W65-bY-z9F"/>
                     </connections>
                 </viewController>
@@ -123,7 +128,7 @@
         <!--Map View Controller-->
         <scene sceneID="dFR-eQ-jnZ">
             <objects>
-                <viewController id="dBm-rB-FZu" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="dBm-rB-FZu" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="SdG-Ph-d64">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -246,8 +251,8 @@
         <!--Tab Bar Controller-->
         <scene sceneID="X69-eW-6Bo">
             <objects>
-                <tabBarController id="Ybh-0W-51k" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hKV-OU-CF0">
+                <tabBarController storyboardIdentifier="ManagerTabBarController" id="Ybh-0W-51k" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="hKV-OU-CF0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -261,11 +266,11 @@
             </objects>
             <point key="canvasLocation" x="-1893" y="-85"/>
         </scene>
-        <!--Item 2-->
+        <!--List View-->
         <scene sceneID="j4T-E5-7oQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YxH-hd-lZO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="t7R-uA-ogu"/>
+                    <tabBarItem key="tabBarItem" title="List View" selectedImage="icon_listview-selected" id="t7R-uA-ogu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nQb-fM-k7N">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -280,11 +285,11 @@
             </objects>
             <point key="canvasLocation" x="-942" y="293"/>
         </scene>
-        <!--Item 1-->
+        <!--Map View-->
         <scene sceneID="gfu-kn-Axb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hcX-kN-cKf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="Mtl-Kf-t4r"/>
+                <navigationController storyboardIdentifier="ManagerNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="hcX-kN-cKf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map View" selectedImage="icon_mapview-selected" id="Mtl-Kf-t4r"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EEf-9W-oCw">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -320,6 +325,8 @@
     </scenes>
     <resources>
         <image name="icon_addpin" width="24" height="24"/>
+        <image name="icon_listview-selected" width="75" height="50"/>
+        <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>

@@ -168,10 +168,9 @@ class Client: NSObject {
         return Singleton.sharedInstance
     }
     
-    // MARK: Functions for Udacity API
+  
     
-
-    
+  
     
     
 

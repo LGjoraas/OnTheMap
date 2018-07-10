@@ -9,11 +9,10 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextViewDelegate {
-
-    
-    
     
     @IBOutlet weak var signUpTextView: UITextView!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +21,8 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         attributedString.addAttribute(.link, value: "https://auth.udacity.com/sign-up", range: NSRange(location: 23, length: 7))
         
         signUpTextView.attributedText = attributedString
+        signUpTextView.textAlignment = .center
+        signUpTextView.font = UIFont(name: "Avenir Next", size: 17)
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
@@ -30,10 +31,43 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     }
     
     
+    // MARK: POST a Session
     
+    @IBAction func loginPressed(_ sender: Any) {
+       
+                
+        var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        
+        guard let email = emailTextField.text, email != "" else { return }
+        guard let password = passwordTextField.text, password != "" else { return }
+        
+        request.httpBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}".data(using: .utf8)
+        print(request.httpBody)
+            let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil { // Handle error…
+                print(error)
+            }
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range) /* subset response data! */
+            let accountDetails = String(data: newData!, encoding: .utf8)!
+            print(accountDetails)
+        
+        }
+        
+        task.resume()
+        
+        self.completeLogin()
+    }
     
-    
-    
+    private func completeLogin() {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "ManagerNavigationController") as! UINavigationController
+        present(controller, animated: true, completion: nil)
+    }
     
     
     

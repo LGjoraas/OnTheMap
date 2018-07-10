@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/Controller/LoginViewController.swift"
-            timestampString = "552868611.97668"
+            timestampString = "552874237.7463959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "textView(_:shouldInteractWith:in:interaction:)"
             landmarkType = "7">
          </BreakpointContent>

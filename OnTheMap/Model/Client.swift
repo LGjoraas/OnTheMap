@@ -2,7 +2,7 @@
 //  Client.swift
 //  OnTheMap
 //
-//  Created by Ryan Gjoraas on 6/28/18.
+//  Created by Lindsey Gjoraas on 6/28/18.
 //  Copyright © 2018 Developed by Gjoraas. All rights reserved.
 //
 
@@ -168,13 +168,82 @@ class Client: NSObject {
         return Singleton.sharedInstance
     }
     
-  
+    // MARK: Udacity API
+    func postSessionIDToLogin (_ email: String, _ password: String, completionHandlerForLogin: @escaping (_ success: Bool) -> Void) -> URLSessionTask {
+        
+        var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}".data(using: .utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            /* GUARD: was there an error? */
+            guard (error == nil) else { return }
+            
+            /* GUARD: Did we get correct status? */
+            //guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 403 else {
+               // print("Status code wrong!")
+               // return }
+        
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else { return }
+            
+            let range = Range(5..<data.count)
+            let newData = data.subdata(in: range) /* subset response data! */
+            let accountDetails = String(data: newData, encoding: .utf8)
+            
+            if (accountDetails?.contains("error"))! {
+                print("ERROR!!")
+                completionHandlerForLogin(true)
+            }
+            else {
+                completionHandlerForLogin(true)
+            }
+            
+        }
+        
+        task.resume()
+        
+        return task
+    }
     
-  
-    
-    
-
-
-    
+    func deleteSessionIDToLogout(completionHanderForLogout: @escaping (_ success: Bool) -> Void) -> URLSessionTask {
+        
+        var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil { // Handle error…
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            let range = Range(5..<data.count)
+            let newData = data.subdata(in: range) /* subset response data! */
+            let accountDetails = String(data: newData, encoding: .utf8)
+            print("logged out account = \(accountDetails)")
+            if (accountDetails?.contains("error"))! {
+                completionHanderForLogout(false)
+            }
+            else {
+                completionHanderForLogout(true)
+            }
+        }
+        task.resume()
+        
+        return task
+    }
     
 }

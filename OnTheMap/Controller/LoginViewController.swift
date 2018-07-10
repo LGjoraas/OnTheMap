@@ -35,8 +35,23 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func loginPressed(_ sender: Any) {
        
-                
-        var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        guard let email = emailTextField.text, email != "" else { return }
+        guard let password = passwordTextField.text, password != "" else { return }
+        
+        Client.sharedInstance().postSessionIDToLogin(email, password) { (success) in
+            performUIUpdatesOnMain {
+                if success {
+                    self.completeLogin()  //this does not work here?? - segue issue??
+                }
+                else {
+                    print("Account is not registered with Udacity!")
+                }
+            }
+
+            //self.completeLogin()
+        }
+    }
+        /*var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -44,33 +59,43 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         
         guard let email = emailTextField.text, email != "" else { return }
         guard let password = passwordTextField.text, password != "" else { return }
-        
+        var accountDetails: String = ""
         request.httpBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}".data(using: .utf8)
-        print(request.httpBody)
+        //print(request.httpBody)
             let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
-            if error != nil { // Handle error…
-                print(error)
+            if let error = error { // Handle error…
+                print("ERROR = \(error)")
             }
             let range = Range(5..<data!.count)
             let newData = data?.subdata(in: range) /* subset response data! */
-            let accountDetails = String(data: newData!, encoding: .utf8)!
-            print(accountDetails)
+            accountDetails = String(data: newData!, encoding: .utf8)!
+            print(response)
         
         }
         
         task.resume()
-        
-        self.completeLogin()
-    }
+        print("ACCOUNT! = \(accountDetails)")
+        if accountDetails.contains("\"Account not found or invalid credentials\"") {
+            print("Account not registered!")*/
+        /*else {
+            self.completeLogin()
+        }*/
     
     private func completeLogin() {
-        let controller = storyboard!.instantiateViewController(withIdentifier: "ManagerNavigationController") as! UINavigationController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ManagerTabBarController") as! UITabBarController
         present(controller, animated: true, completion: nil)
     }
     
-    
-    
+    @IBAction func unwindMapTableViews(segue: UIStoryboardSegue) {
+        Client.sharedInstance().deleteSessionIDToLogout { (success) in
+            performUIUpdatesOnMain {
+                if success {
+                    self.viewDidLoad()
+                }
+            }
+        }
+    }
 }
     
     

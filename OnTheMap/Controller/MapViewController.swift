@@ -82,6 +82,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // method in TableViewDataSource.
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             
+        
+            
+            
             let reuseId = "pin"
             
             var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView

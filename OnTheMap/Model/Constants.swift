@@ -84,5 +84,10 @@ struct Constants {
 
     }
     
+    struct NewStudent {
+        static let uniqueKey = ""
+        static let firstName = ""
+        static let lastName = ""
+    }
 }
 

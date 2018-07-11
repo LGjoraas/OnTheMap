@@ -228,6 +228,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="findLocationPressed:" destination="taB-Ud-42X" eventType="touchUpInside" id="pQ1-P7-fqt"/>
                                     <segue destination="Zhf-II-YsI" kind="show" id="atI-BD-6Z4"/>
                                 </connections>
                             </button>
@@ -251,6 +252,10 @@
                         <viewLayoutGuide key="safeArea" id="nxp-Ji-VeF"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="QUG-nX-lPT"/>
+                    <connections>
+                        <outlet property="linkTextField" destination="4JV-TS-w5e" id="u7J-6S-OaC"/>
+                        <outlet property="locationTextField" destination="gPB-za-Q9w" id="k6W-cr-0g7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEe-9I-t4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -259,7 +264,7 @@
         <!--Location Confirm View Controller-->
         <scene sceneID="2of-No-1Q0">
             <objects>
-                <viewController id="Zhf-II-YsI" customClass="LocationConfirmViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="locationConfirmVC" id="Zhf-II-YsI" customClass="LocationConfirmViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9SJ-Jd-wsa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -274,6 +279,9 @@
                                 <state key="normal" title="Finish">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="finishPressed:" destination="Zhf-II-YsI" eventType="touchUpInside" id="ACy-JE-7zg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

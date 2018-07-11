@@ -7,9 +7,21 @@
 //
 
 import UIKit
+import CoreLocation
 
 class LocationConfirmViewController: UIViewController {
 
+    // MARK: Properties
+    
+    var locationAdded: String?
+    var urlAdded: String?
+    var latitudeAdded: Double?
+    var longitudeAdded: Double?
+    
+    var locationCL: CLLocation?
+    var coordinatesCL: CLLocationCoordinate2D?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,14 +34,17 @@ class LocationConfirmViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func finishPressed(_ sender: Any) {
+        Client.sharedInstance().postNewStudentLocation(locationName: locationAdded!, url:
+        urlAdded!, latitude: latitudeAdded!, longitude: longitudeAdded!) { (success, error) in
+            if success {
+                print("added new location")
+            } else {
+                print(error)
+            }
+        }
     }
-    */
+    
+
 
 }

@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +24,8 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         signUpTextView.attributedText = attributedString
         signUpTextView.textAlignment = .center
         signUpTextView.font = UIFont(name: "Avenir Next", size: 17)
+        
+        
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
@@ -38,7 +41,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         guard let email = emailTextField.text, email != "" else { return }
         guard let password = passwordTextField.text, password != "" else { return }
         
-        Client.sharedInstance().postSessionIDToLogin(email, password) { (success) in
+        Client.sharedInstance().loginToUdacity(username: email, password: password) { (success, error) in
             performUIUpdatesOnMain {
                 if success {
                     self.completeLogin()  //this does not work here?? - segue issue??
@@ -47,40 +50,8 @@ class LoginViewController: UIViewController, UITextViewDelegate {
                     print("Account is not registered with Udacity!")
                 }
             }
-
-            //self.completeLogin()
         }
     }
-        /*var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        
-        guard let email = emailTextField.text, email != "" else { return }
-        guard let password = passwordTextField.text, password != "" else { return }
-        var accountDetails: String = ""
-        request.httpBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}".data(using: .utf8)
-        //print(request.httpBody)
-            let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
-            if let error = error { // Handle error…
-                print("ERROR = \(error)")
-            }
-            let range = Range(5..<data!.count)
-            let newData = data?.subdata(in: range) /* subset response data! */
-            accountDetails = String(data: newData!, encoding: .utf8)!
-            print(response)
-        
-        }
-        
-        task.resume()
-        print("ACCOUNT! = \(accountDetails)")
-        if accountDetails.contains("\"Account not found or invalid credentials\"") {
-            print("Account not registered!")*/
-        /*else {
-            self.completeLogin()
-        }*/
     
     private func completeLogin() {
         let controller = storyboard?.instantiateViewController(withIdentifier: "ManagerTabBarController") as! UITabBarController
@@ -92,6 +63,9 @@ class LoginViewController: UIViewController, UITextViewDelegate {
             performUIUpdatesOnMain {
                 if success {
                     self.viewDidLoad()
+                }
+                else {
+                    print("Could not be logged out")
                 }
             }
         }

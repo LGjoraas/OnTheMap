@@ -216,7 +216,7 @@ extension Client {
             let range = Range(5..<data.count)
             let newData = data.subdata(in: range) /* subset response data! */
             let accountDetails = String(data: newData, encoding: .utf8)
-            print("logged out account = \(accountDetails)")
+            print("logged out account = \(accountDetails!)")
             if (accountDetails?.contains("error"))! {
                 completionHanderForLogout(false)
             }

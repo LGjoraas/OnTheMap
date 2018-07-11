@@ -12,7 +12,7 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
         
         // The map. See the setup in the Storyboard file. Note particularly that the view controller
-        // is set up as the map view's delegate.
+        // is set up as the map view's delegate. Format and code used from PinSample App from Udacity.
         @IBOutlet weak var mapView: MKMapView!
     
         var studentLocations = [StudentLocation]()
@@ -38,7 +38,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     print("ERROR = \(error)")
                 }
                 else if let locations = locations {
-                    print("STUDENT LOCATIONS = \(locations)")
+                  
 
                     
                     // The "locations" array is loaded with the sample data below. We are using the dictionaries
@@ -51,13 +51,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                         // Check if student location properties exist, and if so, put StudentLocation on map
                         if let latitude = location.latitude, let longitude = location.longitude, let first = location.firstName, let last = location.lastName, let mediaURL = location.mediaURL {
                             let lat = CLLocationDegrees(latitude)
-                            print("LATITUDE = \(lat)")
+                           
                             let long = CLLocationDegrees(longitude)
-                            print("LONGITUDE = \(long)")
+                           
                             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                             let annotation = MKPointAnnotation()
                             annotation.coordinate = coordinate
-                            print("COORDINATE = \(annotation.coordinate)")
+                           
                             annotation.title = "\(first) \(last)"
                             annotation.subtitle = mediaURL
                             
@@ -74,16 +74,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
             
-        
         // MARK: - MKMapViewDelegate
         
         // Here we create a view with a "right callout accessory view". You might choose to look into other
         // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
         // method in TableViewDataSource.
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            
-        
-            
             
             let reuseId = "pin"
             
@@ -92,7 +88,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if pinView == nil {
                 pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                 pinView!.canShowCallout = true
-                pinView!.pinColor = .red
+                pinView!.pinTintColor = .red
                 pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             }
             else {
@@ -101,15 +97,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
             return pinView
         }
-        
-        
+    
         // This delegate method is implemented to respond to taps. It opens the system browser
         // to the URL specified in the annotationViews subtitle property.
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             if control == view.rightCalloutAccessoryView {
                 let app = UIApplication.shared
                 if let toOpen = view.annotation?.subtitle! {
-                    app.openURL(URL(string: toOpen)!)
+                    app.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
+
                 }
             }
         }

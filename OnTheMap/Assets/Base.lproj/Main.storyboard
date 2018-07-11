@@ -37,13 +37,13 @@
                                     <constraint firstAttribute="width" constant="100" id="jNz-r7-IQw"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="24" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sw4-3w-4Fp">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="24" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sw4-3w-4Fp">
                                 <rect key="frame" x="51" y="239" width="273" height="37"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="24" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZTJ-5U-biD">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="24" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZTJ-5U-biD">
                                 <rect key="frame" x="51" y="284" width="273" height="37"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
@@ -268,7 +268,7 @@
                     <navigationItem key="navigationItem" title="Add Location" id="QUG-nX-lPT">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8Pd-gU-5Nf">
                             <connections>
-                                <segue destination="lGv-DO-jWV" kind="unwind" unwindAction="unwindMapTableViewsWithSegue:" id="lBy-jF-RPJ"/>
+                                <action selector="cancelPressed:" destination="taB-Ud-42X" id="3xX-3f-SiL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -278,7 +278,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEe-9I-t4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="lGv-DO-jWV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="758" y="-55"/>
         </scene>
@@ -292,6 +291,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2HH-2r-tJ7">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Zhf-II-YsI" id="Xtm-I0-jDp"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkP-19-P62">
                                 <rect key="frame" x="31" y="533" width="312" height="45"/>
@@ -309,15 +311,22 @@
                         <constraints>
                             <constraint firstItem="2HH-2r-tJ7" firstAttribute="leading" secondItem="BO7-2m-eh6" secondAttribute="leading" id="1Li-mO-zS3"/>
                             <constraint firstItem="pkP-19-P62" firstAttribute="leading" secondItem="BO7-2m-eh6" secondAttribute="leading" constant="31" id="5bV-3N-pBg"/>
+                            <constraint firstItem="2HH-2r-tJ7" firstAttribute="leading" secondItem="BO7-2m-eh6" secondAttribute="leading" id="CUi-Bp-Enz"/>
                             <constraint firstItem="2HH-2r-tJ7" firstAttribute="trailing" secondItem="BO7-2m-eh6" secondAttribute="trailing" id="Q4q-ph-r7J"/>
                             <constraint firstItem="2HH-2r-tJ7" firstAttribute="bottom" secondItem="BO7-2m-eh6" secondAttribute="bottom" id="Vpf-hS-sFh"/>
                             <constraint firstItem="BO7-2m-eh6" firstAttribute="bottom" secondItem="pkP-19-P62" secondAttribute="bottom" constant="89" id="ce2-Ff-zNm"/>
+                            <constraint firstItem="2HH-2r-tJ7" firstAttribute="top" secondItem="BO7-2m-eh6" secondAttribute="top" id="eCY-rH-gEa"/>
                             <constraint firstItem="2HH-2r-tJ7" firstAttribute="top" secondItem="BO7-2m-eh6" secondAttribute="top" id="eJp-w6-0hg"/>
                             <constraint firstItem="pkP-19-P62" firstAttribute="top" secondItem="BO7-2m-eh6" secondAttribute="top" constant="469" id="j1v-Ze-eT5"/>
+                            <constraint firstItem="2HH-2r-tJ7" firstAttribute="bottom" secondItem="BO7-2m-eh6" secondAttribute="bottom" id="oAb-2I-0ip"/>
+                            <constraint firstItem="2HH-2r-tJ7" firstAttribute="trailing" secondItem="BO7-2m-eh6" secondAttribute="trailing" id="ol7-Uz-eSj"/>
                             <constraint firstItem="BO7-2m-eh6" firstAttribute="trailing" secondItem="pkP-19-P62" secondAttribute="trailing" constant="32" id="zVc-ae-8rt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BO7-2m-eh6"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="2HH-2r-tJ7" id="8IE-DU-0c3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iC2-Ia-LbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

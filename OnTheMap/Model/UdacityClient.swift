@@ -18,18 +18,21 @@ extension Client {
             if success {
                 self.sessionID = sessionID
                 self.userAccountKey = userAccountKey
-                
+                print("success: GOT TO HERE")
                 self.retrieveStudentFirstAndLastName(accountKey: self.userAccountKey!, { (success, studentFirstName, studentLastName, errorMessage) in
                     if success {
                         self.studentFirstName = studentFirstName
+                        print("success: GOT FIRST NAME")
                         self.studentLastName = studentLastName
+                        print("success: GOT LAST NAME")
+                        completionHandlerForLogin(true, nil)
                     }
                     else {
-                        completionHandlerForLogin(success, errorMessage)
+                        completionHandlerForLogin(success, "retrieve names error")
                     }
                 })
             } else {
-                completionHandlerForLogin(success, errorMessage)
+                completionHandlerForLogin(success, "retrieve key error")
             }
         }
         

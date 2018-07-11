@@ -37,14 +37,16 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     // MARK: POST a Session
     
     @IBAction func loginPressed(_ sender: Any) {
-       
+       print("login PRESSED")
         guard let email = emailTextField.text, email != "" else { return }
         guard let password = passwordTextField.text, password != "" else { return }
         
         Client.sharedInstance().loginToUdacity(username: email, password: password) { (success, error) in
             performUIUpdatesOnMain {
                 if success {
-                    self.completeLogin()  //this does not work here?? - segue issue??
+                    print("SUCCESS")
+                    self.completeLogin()
+                    print("LOGIN COMPLETED")
                 }
                 else {
                     print("Account is not registered with Udacity!")
@@ -54,7 +56,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     }
     
     private func completeLogin() {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "ManagerTabBarController") as! UITabBarController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
         present(controller, animated: true, completion: nil)
     }
     

@@ -27,7 +27,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Stv-Cs-Y5P"/>
+                                    <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rO3-uR-EOn"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="qEq-9w-5qp">
@@ -166,7 +166,7 @@
         <!--On The Map-->
         <scene sceneID="6kQ-7W-Gfg">
             <objects>
-                <navigationController title="On The Map" id="VgH-9N-HPR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" title="On The Map" id="VgH-9N-HPR" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1az-LG-Vvh">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

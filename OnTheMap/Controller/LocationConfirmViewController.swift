@@ -39,12 +39,16 @@ class LocationConfirmViewController: UIViewController {
         urlAdded!, latitude: latitudeAdded!, longitude: longitudeAdded!) { (success, error) in
             if success {
                 print("added new location")
+                self.backToTabView()
             } else {
                 print(error)
             }
         }
     }
     
+    func backToTabView() {
+        navigationController?.popToRootViewController(animated: true)
+    }
 
 
 }

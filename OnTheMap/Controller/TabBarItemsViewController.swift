@@ -26,7 +26,7 @@ class TabBarItemsViewController: UITabBarController {
         
         // Refresh the views of each controller simultaneously.
         for controller in controllers! {
-            controller.loadView()
+            //controller.loadView()
             controller.viewDidLoad()
         }
     }

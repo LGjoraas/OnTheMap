@@ -54,47 +54,47 @@ class Client: NSObject {
     // MARK: Function to create new location
     func postNewStudentLocation(locationName: String, url: String, latitude: Double, longitude: Double, completionHandlerForNewLocation: @escaping (_ success: Bool, _ error: String?) -> Void) {
         
-      
+        print(userAccountKey)
+        print(studentFirstName)
+        print(studentLastName)
+        print(locationName)
+        print(url)
+        print(latitude)
+        print(longitude)
+        
         // Configure the request
         var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
         request.httpMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"\(userAccountKey)\", \"firstName\": \"\(studentFirstName)\", \"lastName\": \"\(studentLastName)\",\"mapString\": \"\(locationName)\", \"mediaURL\": \"\(url)\", \"latitude\": \(latitude), \"longitude\": \(longitude)}".data(using: .utf8)
-        
+        request.httpBody = "{\"uniqueKey\": \"\(userAccountKey!)\", \"firstName\": \"\(studentFirstName!)\", \"lastName\": \"\(studentLastName!)\",\"mapString\": \"\(locationName)\", \"mediaURL\": \"\(url)\", \"latitude\": \(latitude), \"longitude\": \(longitude)}".data(using: .utf8)
+        print("{\"uniqueKey\": \"\(userAccountKey!)\", \"firstName\": \"\(studentFirstName!)\", \"lastName\": \"\(studentLastName!)\",\"mapString\": \"\(locationName)\", \"mediaURL\": \"\(url)\", \"latitude\": \(latitude), \"longitude\": \(longitude)}")
         // Make the request
         let task = session.dataTask(with: request) { data, response, error in
             
-            // Sends the error message to the completion handler if an error has occured and an
-            // error alert pop-up will need to be displayed. Also prints out the error String
-            // debug message to the console.
             func sendErrorMessage(_ errorString: String, _ errorMessage: String) {
                 print(errorString)
                 completionHandlerForNewLocation(false, errorMessage)
             }
-            
-            // The string that will contain the error message, should an error arise.
+        
             var errorString: String = ""
-            
-            // The message that will be sent to the alert pop-up through the completion handler,
-            // should the attempt to post the student's location info to the Parse API for the first
-            // time be unsuccessful.
             let errorMessage = "Could not successfully upload your location to the Parse server."
-            
-            /* GUARD: Was there an error? */
             guard (error == nil) else {
                 errorString = "Post student location to Parse API: There was an error with your request: \(String(describing: error))"
                 sendErrorMessage(errorString, errorMessage)
                 return
             }
             
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                errorString = "Post student location to Parse API: Your request returned a status code other than 2xx."
-                sendErrorMessage(errorString, errorMessage)
-                return
-            }
+            let statusCode = (response as? HTTPURLResponse)?.statusCode
+            print("Status Code = \(statusCode)")
+//            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+////                errorString = "Post student location to Parse API: Your request returned a status code other than 2xx."
+//                sendErrorMessage(errorString, errorMessage)
+//                return
+//
+//            }
+           
             
             /* GUARD: Was there any data returned? */
             guard let data = data else {
@@ -102,6 +102,8 @@ class Client: NSObject {
                 sendErrorMessage(errorString, errorMessage)
                 return
             }
+            
+            print("DATA = \(data)")
             
             /* Parse the data. */
             let parsedResult: [String:AnyObject]!
@@ -113,12 +115,13 @@ class Client: NSObject {
                 return
             }
             
+            print("PARSED RESULTS = \(parsedResult)")
             /* GUARD: Is the "updatedAt" key in the parsed result? */
-            guard let _ = parsedResult["updatedAt"] as? String else {
+            /*guard let _ = parsedResult["updatedAt"] as? String else {
                 errorString = "Cannot find key \"updatedAt\" in \(parsedResult)."
                 sendErrorMessage(errorString, errorMessage)
                 return
-            }
+            }*/
             
             // If the "updatedAt" timestamp is inside the parsed result, we know
             // that the student's location info has been successfully added to Parse.

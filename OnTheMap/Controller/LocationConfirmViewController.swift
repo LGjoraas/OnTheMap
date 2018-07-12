@@ -81,12 +81,12 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
     }
     
     func backToTabView() {
-        navigationController?.popToRootViewController(animated: true)
-//        let tabBarController = storyboard?.instantiateViewController(withIdentifier: "ManagerTabBarController") as! TabBarItemsViewController
-//        tabBarController.reloadMapTableVC()
+        navigationController?.popToRootViewController(animated: true, completion: {
+            let tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "ManagerTabBarController") as! TabBarItemsViewController
+            tabBarController.reloadMapTableVC()
+        })
+
     }
-
-
 }
 
 // MARK: Placemark extension for reverse geocoder (Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app)
@@ -112,4 +112,12 @@ extension CLPlacemark {
         }
         return nil
     }
+}
+
+extension UINavigationController {
+    
+    func popToRootViewController(animated: Bool, completion: @escaping (() -> Void)) {
+        popToRootViewController(animated: animated)
+    }
+    
 }

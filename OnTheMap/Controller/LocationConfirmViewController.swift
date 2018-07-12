@@ -29,7 +29,7 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinatesCL!
+        annotation.coordinate = self.coordinatesCL!
         
         reverseGeoCode(locationCL!) { (locationAddress) in
         

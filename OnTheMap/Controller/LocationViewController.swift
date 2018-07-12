@@ -45,6 +45,7 @@ class LocationViewController: UIViewController {
     
         self.urlString = self.linkTextField.text!
         print("LOCATION ENTERED = \(locationEntered)")
+        
         self.getLatLong(locationString: locationEntered) { (success, location, coordinates, error) in
             performUIUpdatesOnMain {
                 if success{
@@ -60,32 +61,56 @@ class LocationViewController: UIViewController {
                     
                     print(success)
                     self.showLocationConfirmVC()
-                    
+                    //performUIUpdatesOnMain {
+                     //   self.showLocationConfirmVC()
+                    //}
                 } else {
                     print("Error with location entered = \(error)")
                 }
             }
         }
+        //self.showLocationConfirmVC()
     }
     
     // MARK: Get Lat and Long ((Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app)
     
     func getLatLong(locationString: String, completionHandler: @escaping (Bool, CLLocation?, CLLocationCoordinate2D, NSError?) -> Void) {
         let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(locationString, completionHandler: { (placemarks, error) in
-            if error == nil {
-                if let placemark = placemarks?[0] {
-                    let location = placemark.location!
-                    print("LOCATION: \(location)")
-                    completionHandler(true, location, location.coordinate, nil)
-                    return
-                }
+        print("GOT CLGEOCODER")
+        geocoder.geocodeAddressString(locationString) { (placemarks, error) in
+            if let error = error {
+                print("Unable to forward geocode address = \(error)")
             } else {
-                    completionHandler(false, nil, kCLLocationCoordinate2DInvalid, error as NSError?)
+                if let placemarks = placemarks, placemarks.count > 0  {
+                    if let location = placemarks.first?.location {
+                        print("LOCATION: \(location)")
+                        completionHandler(true, location, location.coordinate, nil)
+                        return
+                    }
                 }
-            })
-    
+            }
         }
+    }
+    
+    /*private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+        // Update View
+        print("YESS!!!!")
+        if let error = error {
+            print("Unable to Forward Geocode Address (\(error))")
+            
+        } else {
+            var location: CLLocation?
+            print("YES!!!!")
+            if let placemarks = placemarks, placemarks.count > 0 {
+                location = placemarks.first?.location
+                print(location?.coordinate)
+            }
+            
+            if let location = location {
+                let coordinate = location.coordinate
+            }
+        }
+    }*/
     
     
     // MARK: Show Location Confirm View Controller

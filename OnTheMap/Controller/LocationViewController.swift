@@ -92,7 +92,7 @@ class LocationViewController: UIViewController {
         }
     }
     
-    /*private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
         // Update View
         print("YESS!!!!")
         if let error = error {
@@ -110,7 +110,7 @@ class LocationViewController: UIViewController {
                 let coordinate = location.coordinate
             }
         }
-    }*/
+    }
     
     
     // MARK: Show Location Confirm View Controller

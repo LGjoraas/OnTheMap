@@ -82,6 +82,8 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
     
     func backToTabView() {
         navigationController?.popToRootViewController(animated: true)
+//        let tabBarController = storyboard?.instantiateViewController(withIdentifier: "ManagerTabBarController") as! TabBarItemsViewController
+//        tabBarController.reloadMapTableVC()
     }
 
 

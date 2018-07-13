@@ -10,6 +10,8 @@ import UIKit
 
 class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,8 +26,8 @@ class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         let studentInfo = StudentLocation.allLocations[indexPath.row]
         
-        if let firstNamne = studentInfo.firstName, let lastName = studentInfo.lastName {
-            cell.textLabel?.text = firstNamne + " " + lastName
+        if let firstName = studentInfo.firstName, let lastName = studentInfo.lastName {
+            cell.textLabel?.text = firstName + " " + lastName
         }
         if let subtitle = studentInfo.mediaURL {
             cell.detailTextLabel?.text = subtitle
@@ -33,5 +35,5 @@ class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
-    
+
 }

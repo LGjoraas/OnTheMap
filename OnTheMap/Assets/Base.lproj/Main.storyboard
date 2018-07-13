@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5C-zn-rsY">
-                                <rect key="frame" x="51" y="329" width="273" height="45"/>
+                                <rect key="frame" x="51" y="319" width="273" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
                                 <state key="normal" title="LOG IN">
@@ -38,19 +38,19 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="24" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sw4-3w-4Fp">
-                                <rect key="frame" x="51" y="239" width="273" height="37"/>
+                                <rect key="frame" x="51" y="239" width="273" height="32"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="24" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZTJ-5U-biD">
-                                <rect key="frame" x="51" y="284" width="273" height="37"/>
+                                <rect key="frame" x="51" y="279" width="273" height="32"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yuJ-5R-2fO">
-                                <rect key="frame" x="51" y="382" width="273" height="38"/>
+                                <rect key="frame" x="51" y="372" width="273" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -157,6 +157,9 @@
                             <barButtonItem systemItem="refresh" id="hfR-1j-yh0"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="fAh-4Z-15V" id="7k1-1q-fRd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T74-GV-fNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qNd-28-6Ss" userLabel="Exit" sceneMemberID="exit"/>
@@ -222,16 +225,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="cfs-T4-BYb">
                                 <rect key="frame" x="151" y="99" width="72" height="67"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Location Name" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gPB-za-Q9w">
-                                <rect key="frame" x="31" y="208" width="313" height="37"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Location Name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gPB-za-Q9w">
+                                <rect key="frame" x="31" y="218" width="313" height="32"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Link to Share" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4JV-TS-w5e">
-                                <rect key="frame" x="31" y="253" width="313" height="37"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Link to Share" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4JV-TS-w5e">
+                                <rect key="frame" x="31" y="258" width="313" height="32"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taU-co-cHi">
@@ -248,11 +251,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gPB-za-Q9w" firstAttribute="top" secondItem="cfs-T4-BYb" secondAttribute="bottom" constant="52" id="2OW-IC-DiT"/>
                             <constraint firstItem="4JV-TS-w5e" firstAttribute="top" secondItem="gPB-za-Q9w" secondAttribute="bottom" constant="8" id="87G-14-Ck6"/>
                             <constraint firstItem="taU-co-cHi" firstAttribute="leading" secondItem="nxp-Ji-VeF" secondAttribute="leading" constant="31" id="DEg-Ko-5Px"/>
                             <constraint firstItem="gPB-za-Q9w" firstAttribute="leading" secondItem="nxp-Ji-VeF" secondAttribute="leading" constant="31" id="Lfc-sj-fAs"/>
                             <constraint firstItem="taU-co-cHi" firstAttribute="top" secondItem="4JV-TS-w5e" secondAttribute="bottom" constant="21" id="Pev-Bq-tUM"/>
-                            <constraint firstItem="gPB-za-Q9w" firstAttribute="top" secondItem="cfs-T4-BYb" secondAttribute="bottom" constant="42" id="RBY-dd-FJn"/>
                             <constraint firstItem="nxp-Ji-VeF" firstAttribute="bottom" secondItem="taU-co-cHi" secondAttribute="bottom" constant="311" id="Wc8-1Z-eqd"/>
                             <constraint firstItem="cfs-T4-BYb" firstAttribute="top" secondItem="nxp-Ji-VeF" secondAttribute="top" constant="35" id="WeX-x7-24v"/>
                             <constraint firstItem="nxp-Ji-VeF" firstAttribute="trailing" secondItem="cfs-T4-BYb" secondAttribute="trailing" constant="152" id="cOd-sq-Ug9"/>
@@ -347,7 +350,11 @@
                                     <segue destination="taB-Ud-42X" kind="show" id="Bzk-F3-6pg"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="TWk-PA-zBD"/>
+                            <barButtonItem systemItem="refresh" id="TWk-PA-zBD">
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="Ybh-0W-51k" id="Yph-Ez-MtH"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="hKV-OU-CF0">

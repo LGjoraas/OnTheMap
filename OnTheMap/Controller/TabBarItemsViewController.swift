@@ -15,11 +15,9 @@ class TabBarItemsViewController: UITabBarController {
         reloadMapTableVC()
     }
     
+    
     // MARK: Refresh Map and Table View Controllers
     
-    // If re-download and storage of latest top 100 student location entries is successful,
-    // it's necessary to reload both view controllers that are accessible from this tab bar
-    // view controller.
     func reloadMapTableVC() {
         // The map view and table view controllers
         let controllers = self.viewControllers
@@ -31,5 +29,11 @@ class TabBarItemsViewController: UITabBarController {
         }
     }
     
-
+    
+    // MARK: Refresh button functionality
+    
+    @IBAction func refreshButtonPressed(_ sender: Any) {
+        reloadMapTableVC()
+    }
+    
 }

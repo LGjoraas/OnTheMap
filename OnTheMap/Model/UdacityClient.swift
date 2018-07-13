@@ -12,7 +12,9 @@ extension Client {
     
     // MARK: Udacity API
     
+    
     // MARK: Function to login
+    
     func loginToUdacity (username: String, password: String, completionHandlerForLogin: @escaping(_ success: Bool, _ error: String?) -> Void ) {
         postSessionIDToRetrieveKey(username, password) { (success, sessionID, userAccountKey, errorMessage) in
             if success {
@@ -38,7 +40,9 @@ extension Client {
         
     }
     
+    
     // MARK: Function to post session ID to login
+    
     private func postSessionIDToRetrieveKey (_ email: String, _ password: String, completionHandlerForSessionID: @escaping (_ success: Bool, _ sessionID: String?, _ userAccountKey: String?, _ errorMessage: String?) -> Void) {
         
         var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
@@ -50,13 +54,15 @@ extension Client {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
             /* GUARD: was there an error? */
-            guard (error == nil) else { return }
+            guard (error == nil) else {
+                return
+            }
             
             /* GUARD: Did we get correct status? */
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 403 else {
                 print("Status code wrong!")
+                completionHandlerForSessionID(false, "", "", "wrong status code")
                 return }
-            
             
             /* GUARD: Was there any data returned? */
             guard let data = data else { return }
@@ -92,14 +98,13 @@ extension Client {
                 print("Udacity login API could not find key")
                 return
             }
-            
             completionHandlerForSessionID(true, sessionID, userAccontKey, nil)
-            
         }
-        
         task.resume()
     }
     
+    
+    // MARK: Retrieve student first and last name
     
     private func retrieveStudentFirstAndLastName(accountKey: String, _ completionHanderForName: @escaping (_ success: Bool, _ firstName: String?, _ lastName: String?, _ error: String?) -> Void) {
         
@@ -109,19 +114,11 @@ extension Client {
         // Make the request
         let task = session.dataTask(with: request) { data, response, error in
             
-            // Sends the error message to the completion handler if an error has occured and an
-            // error alert pop-up will need to be displayed. Also prints out the error String
-            // debug message to the console.
             func sendErrorMessage(_ errorString: String, _ errorMessage: String) {
                 print(errorString)
                 completionHanderForName(false, nil, nil, errorMessage)
             }
-            
-            // The string that will contain a detailed error description, should an error arise. For debugging purposes.
             var errorString: String = ""
-            
-            // The message that will be sent to the alert pop-up through the completion handler,
-            // should the first and last name retrieval process be unsuccessful.
             let errorMessage = "Could not retrieve student details from the Udacity server."
             
             /* GUARD: Was there an error? */
@@ -192,7 +189,9 @@ extension Client {
         task.resume()
     }
     
+    
     //MARK: Function to delete session to ID to logout
+    
     func deleteSessionIDToLogout(completionHanderForLogout: @escaping (_ success: Bool) -> Void) -> URLSessionTask {
         
         var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
@@ -225,8 +224,8 @@ extension Client {
             }
         }
         task.resume()
-        
         return task
     }
+
 }
 

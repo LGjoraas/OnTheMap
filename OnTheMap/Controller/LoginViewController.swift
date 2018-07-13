@@ -50,7 +50,8 @@ class LoginViewController: UIViewController, UITextViewDelegate {
                     self.completeLogin()
                 }
                 else {
-                    print("Account is not registered with Udacity!")
+                    AlertController.showAlert(inViewController: self, title: "Error Found", message: "Invalid login information entered.")
+                  
                 }
             }
         }
@@ -63,6 +64,15 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         let controller = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
         present(controller, animated: true, completion: nil)
     }
+    
+    
+    // MARK: Error Alert for Login
+    
+//    func displayLoginAlert() {
+//        let alert = UIAlertController(title: "Login Error", message: "Invalid login information entered.", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        self.present(alert, animated: true)
+//    }
     
     
     // MARK: Unwind back to Map and Table Views
@@ -79,6 +89,49 @@ class LoginViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
+    
+   
+    
+    // MARK: Show/Hide Keyboard
+//    
+//    @objc func keyboardWillShow(_ notification: Notification) {
+//        if !keyboardOnScreen {
+//            view.frame.origin.y -= keyboardHeight(notification)/2
+//        }
+//    }
+//    
+//    @objc func keyboardWillHide(_ notification: Notification) {
+//        if keyboardOnScreen {
+//            view.frame.origin.y += keyboardHeight(notification)/2
+//        }
+//    }
+//    
+//    @objc func keyboardDidShow(_ notification: Notification) {
+//        keyboardOnScreen = true
+//    }
+//    
+//    @objc func keyboardDidHide(_ notification: Notification) {
+//        keyboardOnScreen = false
+//    }
+//    
+//    private func keyboardHeight(_ notification: Notification) -> CGFloat {
+//        let userInfo = (notification as NSNotification).userInfo
+//        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+//        return keyboardSize.cgRectValue.height
+//    }
+//    
+//    private func resignIfFirstResponder(_ textField: UITextField) {
+//        if textField.isFirstResponder {
+//            textField.resignFirstResponder()
+//        }
+//    }
+//    
+//    @IBAction func userDidTapView(_ sender: AnyObject) {
+//        resignIfFirstResponder(emailTextField)
+//        resignIfFirstResponder(passwordTextField)
+//    }
+//}
+    
 }
     
 

@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import Foundation
 
 
 class Client: NSObject {
     
-    var session = URLSession.shared
-    
+   
     // MARK: Properties
+    
+    // session variables
+    
+    var session = URLSession.shared
     var sessionID: String? = nil
+    
     // student info variables
+    
     var userAccountKey: String? = nil
     var studentFirstName: String? = nil
     var studentLastName: String? = nil
     
     // location variables
+    
     var objectid: String? = nil
     
     
@@ -32,9 +39,11 @@ class Client: NSObject {
         return Singleton.sharedInstance
     }
     
+    
     // MARK : Parse API
     
-    // MARK: Function to get Student Locations
+    // MARK: Function to GET student locations
+    
     func getStudentLocations(completionHandlerForStudentLocations: @escaping (_ result: [StudentLocation]?, _ error: NSError?) -> Void) {
         
         let _ = taskForGETMethod { (data, error) in
@@ -51,88 +60,8 @@ class Client: NSObject {
         }
     }
     
-    // MARK: Function to create new location
-    func postNewStudentLocation(locationName: String, url: String, latitude: Double, longitude: Double, completionHandlerForNewLocation: @escaping (_ success: Bool, _ error: String?) -> Void) {
-        
-        print(userAccountKey)
-        print(studentFirstName)
-        print(studentLastName)
-        print(locationName)
-        print(url)
-        print(latitude)
-        print(longitude)
-        
-        // Configure the request
-        var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
-        request.httpMethod = "POST"
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"\(userAccountKey!)\", \"firstName\": \"\(studentFirstName!)\", \"lastName\": \"\(studentLastName!)\",\"mapString\": \"\(locationName)\", \"mediaURL\": \"\(url)\", \"latitude\": \(latitude), \"longitude\": \(longitude)}".data(using: .utf8)
-        print("{\"uniqueKey\": \"\(userAccountKey!)\", \"firstName\": \"\(studentFirstName!)\", \"lastName\": \"\(studentLastName!)\",\"mapString\": \"\(locationName)\", \"mediaURL\": \"\(url)\", \"latitude\": \(latitude), \"longitude\": \(longitude)}")
-        // Make the request
-        let task = session.dataTask(with: request) { data, response, error in
-            
-            func sendErrorMessage(_ errorString: String, _ errorMessage: String) {
-                print(errorString)
-                completionHandlerForNewLocation(false, errorMessage)
-            }
-        
-            var errorString: String = ""
-            let errorMessage = "Could not successfully upload your location to the Parse server."
-            guard (error == nil) else {
-                errorString = "Post student location to Parse API: There was an error with your request: \(String(describing: error))"
-                sendErrorMessage(errorString, errorMessage)
-                return
-            }
-            
-            let statusCode = (response as? HTTPURLResponse)?.statusCode
-            print("Status Code = \(statusCode)")
-//            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-////                errorString = "Post student location to Parse API: Your request returned a status code other than 2xx."
-//                sendErrorMessage(errorString, errorMessage)
-//                return
-//
-//            }
-           
-            
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                errorString = "Post student location to Parse API: No data was returned by the request."
-                sendErrorMessage(errorString, errorMessage)
-                return
-            }
-            
-            print("DATA = \(data)")
-            
-            /* Parse the data. */
-            let parsedResult: [String:AnyObject]!
-            do {
-                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
-            } catch {
-                errorString = "Post student location to Parse API: Could not parse the data as JSON: '\(data)'"
-                sendErrorMessage(errorString, errorMessage)
-                return
-            }
-            
-            print("PARSED RESULTS = \(parsedResult)")
-            /* GUARD: Is the "updatedAt" key in the parsed result? */
-            /*guard let _ = parsedResult["updatedAt"] as? String else {
-                errorString = "Cannot find key \"updatedAt\" in \(parsedResult)."
-                sendErrorMessage(errorString, errorMessage)
-                return
-            }*/
-            
-            // If the "updatedAt" timestamp is inside the parsed result, we know
-            // that the student's location info has been successfully added to Parse.
-            completionHandlerForNewLocation(true, nil)
-        }
-        
-        // Initiate the request
-        task.resume()
-    }
-
     // MARK: Task for GET
+    
     func taskForGETMethod(completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         let url = URL(string: Constants.Parse.GetPostURL)
@@ -143,7 +72,7 @@ class Client: NSObject {
         request.addValue(Constants.Parse.RESTAPIKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         
         /* 4. Make the request */
-        //let session = URLSession.shared
+        let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             func sendError(_ error: String) {
@@ -180,7 +109,9 @@ class Client: NSObject {
         return task
     }
     
-    // given raw JSON, return a usable Foundation object
+    
+    // MARK: Return information from parsed result
+    
     private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
         
         var parsedResult: AnyObject! = nil
@@ -190,7 +121,78 @@ class Client: NSObject {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
             completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
         }
-        
         completionHandlerForConvertData(parsedResult, nil)
     }
+    
+    
+    
+    // MARK: Function to POST a new student location
+    
+    func postNewStudentLocation(locationName: String, url: String, latitude: Double, longitude: Double, completionHandlerForNewLocation: @escaping (_ success: Bool, _ error: String?) -> Void) {
+        
+        
+        /* 2/3. Build the URL, Configure the request */
+        
+        var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
+        request.httpMethod = "POST"
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = "{\"uniqueKey\": \"\(userAccountKey!)\", \"firstName\": \"\(studentFirstName!)\", \"lastName\": \"\(studentLastName!)\",\"mapString\": \"\(locationName)\", \"mediaURL\": \"\(url)\", \"latitude\": \(latitude), \"longitude\": \(longitude)}".data(using: .utf8)
+       
+        
+        /* 4. Make the request */
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            
+            func sendErrorMessage(_ errorString: String, _ errorMessage: String) {
+                print(errorString)
+                completionHandlerForNewLocation(false, errorMessage)
+            }
+        
+            /* GUARD: Was there an error? */
+            
+            var errorString: String = ""
+            let errorMessage = "Could not successfully upload your location to the Parse server."
+            guard (error == nil) else {
+                errorString = "Post student location to Parse API: There was an error with your request: \(String(describing: error))"
+                sendErrorMessage(errorString, errorMessage)
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                errorString = "Post student location to Parse API: Your request returned a status code other than 2xx."
+                sendErrorMessage(errorString, errorMessage)
+                return
+            }
+            
+            // Check to see if data was returned
+            
+            guard let data = data else {
+                errorString = "Post student location to Parse API: No data was returned by the request."
+                sendErrorMessage(errorString, errorMessage)
+                return
+            }
+            
+            // Parse the JSON data
+            
+            let parsedResult: [String:AnyObject]!
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
+            } catch {
+                errorString = "Post student location to Parse API: Could not parse the data as JSON: '\(data)'"
+                sendErrorMessage(errorString, errorMessage)
+                return
+            }
+            print(parsedResult)
+            if let objectID = parsedResult["objectId"] as! String! {
+                self.objectid = objectID
+            }
+            completionHandlerForNewLocation(true, nil)
+        }
+        task.resume()
+    }
+ 
 }

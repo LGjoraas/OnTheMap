@@ -75,7 +75,7 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
                 print("added new location")
                 self.backToTabView()
             } else if let error = error {
-                print(error)
+                AlertController.showAlert(inViewController: self, title: "Error Found", message: "Your location could not be posted to the map.")
             }
         }
     }
@@ -87,6 +87,8 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
         })
 
     }
+    
+
 }
 
 // MARK: Placemark extension for reverse geocoder (Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app)

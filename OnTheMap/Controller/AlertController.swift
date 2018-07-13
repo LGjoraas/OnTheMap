@@ -2,7 +2,7 @@
 //  AlertController.swift
 //  OnTheMap
 //
-//  Created by Ryan Gjoraas on 7/13/18.
+//  Created by Lindsey Gjoraas on 7/13/18.
 //  Copyright © 2018 Developed by Gjoraas. All rights reserved.
 //
 
@@ -16,7 +16,4 @@ class AlertController {
         alert.addAction(action)
         inViewController.present(alert, animated: true, completion: nil)
     }
-    
-    
-    
 }

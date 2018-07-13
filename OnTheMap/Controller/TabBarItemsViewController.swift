@@ -2,7 +2,7 @@
 //  TabBarItems.swift
 //  OnTheMap
 //
-//  Created by Ryan Gjoraas on 7/11/18.
+//  Created by Lindsey Gjoraas on 7/11/18.
 //  Copyright © 2018 Developed by Gjoraas. All rights reserved.
 //
 
@@ -35,5 +35,4 @@ class TabBarItemsViewController: UITabBarController {
     @IBAction func refreshButtonPressed(_ sender: Any) {
         reloadMapTableVC()
     }
-    
 }

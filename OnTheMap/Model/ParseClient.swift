@@ -105,7 +105,6 @@ class Client: NSObject {
         
         /* 7. Start the request */
         task.resume()
-        
         return task
     }
     
@@ -125,14 +124,12 @@ class Client: NSObject {
     }
     
     
-    
     // MARK: Function to POST a new student location
     
     func postNewStudentLocation(locationName: String, url: String, latitude: Double, longitude: Double, completionHandlerForNewLocation: @escaping (_ success: Bool, _ error: String?) -> Void) {
         
         
         /* 2/3. Build the URL, Configure the request */
-        
         var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
         request.httpMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -142,7 +139,6 @@ class Client: NSObject {
        
         
         /* 4. Make the request */
-        
         let task = session.dataTask(with: request) { data, response, error in
             
             func sendErrorMessage(_ errorString: String, _ errorMessage: String) {
@@ -151,7 +147,6 @@ class Client: NSObject {
             }
         
             /* GUARD: Was there an error? */
-            
             var errorString: String = ""
             let errorMessage = "Could not successfully upload your location to the Parse server."
             guard (error == nil) else {
@@ -161,7 +156,6 @@ class Client: NSObject {
             }
             
             /* GUARD: Did we get a successful 2XX response? */
-            
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 errorString = "Post student location to Parse API: Your request returned a status code other than 2xx."
                 sendErrorMessage(errorString, errorMessage)
@@ -169,7 +163,6 @@ class Client: NSObject {
             }
             
             // Check to see if data was returned
-            
             guard let data = data else {
                 errorString = "Post student location to Parse API: No data was returned by the request."
                 sendErrorMessage(errorString, errorMessage)
@@ -177,7 +170,6 @@ class Client: NSObject {
             }
             
             // Parse the JSON data
-            
             let parsedResult: [String:AnyObject]!
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
@@ -186,13 +178,8 @@ class Client: NSObject {
                 sendErrorMessage(errorString, errorMessage)
                 return
             }
-            print(parsedResult)
-            if let objectID = parsedResult["objectId"] as! String! {
-                self.objectid = objectID
-            }
             completionHandlerForNewLocation(true, nil)
         }
         task.resume()
     }
- 
 }

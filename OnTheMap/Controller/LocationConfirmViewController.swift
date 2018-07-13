@@ -22,8 +22,11 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
     var locationCL: CLLocation?
     var coordinatesCL: CLLocationCoordinate2D?
     
+    // MARK: Outlets
+    
     @IBOutlet weak var mapView: MKMapView!
     
+    // MARK: View Did Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +44,8 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    // MARK: Reverse GeoCode to list name of location (Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app)
+    // MARK: Reverse GeoCode to list name of location
+    //(Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app)
         
     func reverseGeoCode(_ location: CLLocation, completionHandlerForReverseGeoCode: @escaping (String) -> Void ) {
         
@@ -80,18 +84,21 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    
+    // MARK: Function to go back to Tab Bar View
+    
     func backToTabView() {
         navigationController?.popToRootViewController(animated: true, completion: {
             let tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "ManagerTabBarController") as! TabBarItemsViewController
             tabBarController.reloadMapTableVC()
         })
-
     }
-    
-
 }
 
-// MARK: Placemark extension for reverse geocoder (Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app)
+
+// MARK: Placemark extension for reverse geocoder
+//(Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app)
+
 extension CLPlacemark {
     
     var compactAddress: String? {
@@ -116,10 +123,11 @@ extension CLPlacemark {
     }
 }
 
+
+// MARK: Function to go back to the Root View Controller
+
 extension UINavigationController {
-    
     func popToRootViewController(animated: Bool, completion: @escaping (() -> Void)) {
         popToRootViewController(animated: animated)
     }
-    
 }

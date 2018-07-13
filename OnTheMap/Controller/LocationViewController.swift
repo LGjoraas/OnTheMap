@@ -31,9 +31,10 @@ class LocationViewController: UIViewController {
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var linkTextField: UITextField!
     
+    
+    // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-     
     }
     
     
@@ -62,16 +63,10 @@ class LocationViewController: UIViewController {
             }
         }
     }
+
     
-    // MARK: Error alert for Gecoding
-    
-//    func displayGeocodeAlert() {
-//        let alert = UIAlertController(title: "Gecode Alert", message: "Unable to find location", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        self.present(alert, animated: true)
-//    }
-    
-    // MARK: Get Lat and Long ((Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app)
+    // MARK: Get Lat and Long
+    // Geocoder information from the James Dellinger github project note: could not find any good geocoder tutorials online for this complex of an app
     
     func getLatLong(locationString: String, completionHandler: @escaping (Bool, CLLocation?, CLLocationCoordinate2D, NSError?) -> Void) {
         let geocoder = CLGeocoder()
@@ -89,6 +84,9 @@ class LocationViewController: UIViewController {
             }
         }
     }
+    
+    
+    // MARK: Placemarks
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
         // Update View
@@ -121,13 +119,14 @@ class LocationViewController: UIViewController {
             controller.coordinatesCL = getCoordinates!
         
         navigationController?.pushViewController(controller, animated: true)
-        
     }
-        
+    
+    
+    // MARK: Cancel Button Pressed
+    
     @IBAction func cancelPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
-    
 }
 
 
@@ -145,7 +144,6 @@ extension UIViewController {
             spinnerView.addSubview(ai)
             onView.addSubview(spinnerView)
         }
-        
         return spinnerView
     }
     

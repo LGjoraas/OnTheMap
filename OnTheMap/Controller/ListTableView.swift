@@ -16,9 +16,13 @@ class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSourc
         super.viewDidLoad()
     }
     
+    // Number of Rows in Section
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
+    
+    // Cell for Row At
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -34,6 +38,5 @@ class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         return cell
     }
-    
 
 }

@@ -94,7 +94,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             else {
                 pinView!.annotation = annotation
             }
-            
             return pinView
         }
     
@@ -105,13 +104,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 let app = UIApplication.shared
                 if let toOpen = view.annotation?.subtitle! {
                     app.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
-
                 }
             }
         }
-    
-    
-    
-  
     
 }

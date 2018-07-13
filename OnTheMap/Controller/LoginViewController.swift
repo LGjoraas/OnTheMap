@@ -31,7 +31,9 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         signUpTextView.font = UIFont(name: "Avenir Next", size: 17)
     }
     
+    
     // MARK: Use Hyperlink in Text Field
+    
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         UIApplication.shared.open(URL, options: [:])
         return false
@@ -51,7 +53,6 @@ class LoginViewController: UIViewController, UITextViewDelegate {
                 }
                 else {
                     AlertController.showAlert(inViewController: self, title: "Error Found", message: "Invalid login information entered.")
-                  
                 }
             }
         }
@@ -64,15 +65,6 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         let controller = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
         present(controller, animated: true, completion: nil)
     }
-    
-    
-    // MARK: Error Alert for Login
-    
-//    func displayLoginAlert() {
-//        let alert = UIAlertController(title: "Login Error", message: "Invalid login information entered.", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        self.present(alert, animated: true)
-//    }
     
     
     // MARK: Unwind back to Map and Table Views
@@ -90,48 +82,4 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-   
-    
-    // MARK: Show/Hide Keyboard
-//    
-//    @objc func keyboardWillShow(_ notification: Notification) {
-//        if !keyboardOnScreen {
-//            view.frame.origin.y -= keyboardHeight(notification)/2
-//        }
-//    }
-//    
-//    @objc func keyboardWillHide(_ notification: Notification) {
-//        if keyboardOnScreen {
-//            view.frame.origin.y += keyboardHeight(notification)/2
-//        }
-//    }
-//    
-//    @objc func keyboardDidShow(_ notification: Notification) {
-//        keyboardOnScreen = true
-//    }
-//    
-//    @objc func keyboardDidHide(_ notification: Notification) {
-//        keyboardOnScreen = false
-//    }
-//    
-//    private func keyboardHeight(_ notification: Notification) -> CGFloat {
-//        let userInfo = (notification as NSNotification).userInfo
-//        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-//        return keyboardSize.cgRectValue.height
-//    }
-//    
-//    private func resignIfFirstResponder(_ textField: UITextField) {
-//        if textField.isFirstResponder {
-//            textField.resignFirstResponder()
-//        }
-//    }
-//    
-//    @IBAction func userDidTapView(_ sender: AnyObject) {
-//        resignIfFirstResponder(emailTextField)
-//        resignIfFirstResponder(passwordTextField)
-//    }
-//}
-    
 }
-    
-

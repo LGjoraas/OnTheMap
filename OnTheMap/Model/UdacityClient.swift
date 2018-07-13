@@ -11,8 +11,7 @@ import UIKit
 extension Client {
     
     // MARK: Udacity API
-    
-    
+
     // MARK: Function to login
     
     func loginToUdacity (username: String, password: String, completionHandlerForLogin: @escaping(_ success: Bool, _ error: String?) -> Void ) {
@@ -20,13 +19,10 @@ extension Client {
             if success {
                 self.sessionID = sessionID
                 self.userAccountKey = userAccountKey
-                print("success: GOT TO HERE")
                 self.retrieveStudentFirstAndLastName(accountKey: self.userAccountKey!, { (success, studentFirstName, studentLastName, errorMessage) in
                     if success {
                         self.studentFirstName = studentFirstName
-                        print("success: GOT FIRST NAME")
                         self.studentLastName = studentLastName
-                        print("success: GOT LAST NAME")
                         completionHandlerForLogin(true, nil)
                     }
                     else {
@@ -37,7 +33,6 @@ extension Client {
                 completionHandlerForLogin(success, "retrieve key error") 
             }
         }
-        
     }
     
     
@@ -60,7 +55,6 @@ extension Client {
             
             /* GUARD: Did we get correct status? */
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 403 else {
-                print("Status code wrong!")
                 completionHandlerForSessionID(false, "", "", "wrong status code")
                 return }
             
@@ -156,7 +150,6 @@ extension Client {
                 return
             }
             
-            // Getting the student's first and last names from their Udacity public user data
             /* GUARD: Is the "user" key in the parsed result? */
             guard let userInfoDictionary = parsedResult["user"] as? [String:AnyObject] else {
                 errorString = "Udacity Public User Data API: Cannot find key \"user\" in \(parsedResult)."
@@ -177,15 +170,8 @@ extension Client {
                 sendErrorMessage(errorString, errorMessage)
                 return
             }
-            
-            /*
-             If no guard statements were triggered, we've successfully completed the call and
-             can send the desired value(s) to completion handler.
-             */
             completionHanderForName(true, studentFirstName, studentLastName, nil)
         }
-        
-        // Initiate the request
         task.resume()
     }
     
@@ -201,6 +187,7 @@ extension Client {
         for cookie in sharedCookieStorage.cookies! {
             if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
         }
+        
         if let xsrfCookie = xsrfCookie {
             request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
         }

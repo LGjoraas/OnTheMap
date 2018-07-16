@@ -31,13 +31,6 @@ class LocationViewController: UIViewController {
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var linkTextField: UITextField!
     
-    
-    // MARK: View Did Load
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    
     // MARK: Find Location Button Pressed
     
     @IBAction func findLocationPressed(_ sender: Any) {

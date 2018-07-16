@@ -60,7 +60,7 @@ class Client: NSObject {
     func taskForGETMethod(completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         let getURL = Constants.Parse.GetPostURL
-        let addToSort = "?limit=100&order=-updatedAt"  // add this to the URL so that server will sort the data to the most recent 100
+        let addToSort = "?limit=100&order=-updatedAt"  // add this to the URL so that server will sort the data to the most recent 100 (found this also from the James Dellinger github project since the other way suggested with parameters wouldn't work without an additional function)
         
         let urlString = getURL + addToSort
         let url = URL(string: urlString)

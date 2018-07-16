@@ -16,10 +16,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         @IBOutlet weak var mapView: MKMapView!
     
         var studentLocations = [StudentLocation]()
-    
-        override func viewDidLoad() {
-            super.viewDidLoad()
-        }
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)

@@ -12,10 +12,6 @@ class ListTableView: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBOutlet weak var tableView: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     // Number of Rows in Section
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

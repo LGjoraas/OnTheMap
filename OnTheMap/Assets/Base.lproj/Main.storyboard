@@ -50,7 +50,7 @@
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yuJ-5R-2fO">
-                                <rect key="frame" x="51" y="306" width="273" height="114"/>
+                                <rect key="frame" x="51" y="306" width="273" height="181"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -70,7 +70,7 @@
                             <constraint firstItem="qEq-9w-5qp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="137" id="cR0-Gt-Rwr"/>
                             <constraint firstItem="Sw4-3w-4Fp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="mvB-gj-N1o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Sw4-3w-4Fp" secondAttribute="trailing" constant="51" id="nre-T6-inw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yuJ-5R-2fO" secondAttribute="bottom" constant="247" id="nvX-Rx-Z2Q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yuJ-5R-2fO" secondAttribute="bottom" constant="180" id="nvX-Rx-Z2Q"/>
                             <constraint firstItem="yuJ-5R-2fO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="pto-bX-BD8"/>
                             <constraint firstItem="D5C-zn-rsY" firstAttribute="top" secondItem="ZTJ-5U-biD" secondAttribute="bottom" constant="8" id="rFd-Zu-jBu"/>
                             <constraint firstItem="Sw4-3w-4Fp" firstAttribute="top" secondItem="qEq-9w-5qp" secondAttribute="bottom" constant="22" id="rrd-0S-Qaz"/>
@@ -223,24 +223,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="cfs-T4-BYb">
-                                <rect key="frame" x="151" y="99" width="72" height="67"/>
-                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Location Name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gPB-za-Q9w">
-                                <rect key="frame" x="31" y="194" width="313" height="32"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Link to Share" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4JV-TS-w5e">
-                                <rect key="frame" x="31" y="234" width="313" height="32"/>
+                                <rect key="frame" x="31" y="176" width="258" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="79y-qX-d4N"/>
+                                    <constraint firstAttribute="width" constant="258" id="zV8-bm-iIl"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taU-co-cHi">
-                                <rect key="frame" x="31" y="274" width="313" height="45"/>
+                                <rect key="frame" x="31" y="258" width="258" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="258" id="9QY-ty-sVa"/>
+                                    <constraint firstAttribute="height" constant="45" id="bSm-ya-nhM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
                                 <state key="normal" title="Find Location">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -249,22 +248,40 @@
                                     <action selector="findLocationPressed:" destination="taB-Ud-42X" eventType="touchUpInside" id="pQ1-P7-fqt"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="cfs-T4-BYb">
+                                <rect key="frame" x="128" y="79" width="64" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="0kl-zE-Ob2"/>
+                                    <constraint firstAttribute="height" constant="67" id="0x6-jO-Eb9"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Link to Share" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4JV-TS-w5e">
+                                <rect key="frame" x="31" y="218" width="258" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="6wG-FO-Lcd"/>
+                                    <constraint firstAttribute="width" constant="258" id="VeY-k8-Fxq"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="taU-co-cHi" firstAttribute="leading" secondItem="nxp-Ji-VeF" secondAttribute="leading" constant="31" id="DEg-Ko-5Px"/>
                             <constraint firstItem="taU-co-cHi" firstAttribute="top" secondItem="4JV-TS-w5e" secondAttribute="bottom" constant="8" id="DMe-k4-UI4"/>
                             <constraint firstItem="gPB-za-Q9w" firstAttribute="leading" secondItem="nxp-Ji-VeF" secondAttribute="leading" constant="31" id="Lfc-sj-fAs"/>
-                            <constraint firstItem="gPB-za-Q9w" firstAttribute="top" secondItem="cfs-T4-BYb" secondAttribute="bottom" constant="28" id="MPD-6U-sda"/>
-                            <constraint firstItem="cfs-T4-BYb" firstAttribute="top" secondItem="nxp-Ji-VeF" secondAttribute="top" constant="35" id="WeX-x7-24v"/>
-                            <constraint firstItem="4JV-TS-w5e" firstAttribute="top" secondItem="gPB-za-Q9w" secondAttribute="bottom" constant="8" id="ZPd-ee-zeq"/>
-                            <constraint firstItem="nxp-Ji-VeF" firstAttribute="trailing" secondItem="cfs-T4-BYb" secondAttribute="trailing" constant="152" id="cOd-sq-Ug9"/>
+                            <constraint firstItem="gPB-za-Q9w" firstAttribute="top" secondItem="cfs-T4-BYb" secondAttribute="bottom" constant="30" id="MPD-6U-sda"/>
+                            <constraint firstItem="cfs-T4-BYb" firstAttribute="top" secondItem="nxp-Ji-VeF" secondAttribute="top" constant="15" id="WeX-x7-24v">
+                                <variation key="heightClass=regular-widthClass=compact" constant="15"/>
+                            </constraint>
+                            <constraint firstItem="4JV-TS-w5e" firstAttribute="top" secondItem="gPB-za-Q9w" secondAttribute="bottom" constant="10" id="ZPd-ee-zeq"/>
+                            <constraint firstItem="nxp-Ji-VeF" firstAttribute="trailing" secondItem="cfs-T4-BYb" secondAttribute="trailing" constant="128" id="cOd-sq-Ug9"/>
                             <constraint firstItem="nxp-Ji-VeF" firstAttribute="trailing" secondItem="4JV-TS-w5e" secondAttribute="trailing" constant="31" id="gVb-Lj-0oA"/>
-                            <constraint firstItem="nxp-Ji-VeF" firstAttribute="bottom" secondItem="taU-co-cHi" secondAttribute="bottom" constant="348" id="nLU-Bs-3Nu"/>
                             <constraint firstItem="nxp-Ji-VeF" firstAttribute="trailing" secondItem="taU-co-cHi" secondAttribute="trailing" constant="31" id="qhu-U7-tmK"/>
                             <constraint firstItem="4JV-TS-w5e" firstAttribute="leading" secondItem="nxp-Ji-VeF" secondAttribute="leading" constant="31" id="slk-Pp-wL2"/>
                             <constraint firstItem="nxp-Ji-VeF" firstAttribute="trailing" secondItem="gPB-za-Q9w" secondAttribute="trailing" constant="31" id="vu4-RX-Zy4"/>
-                            <constraint firstItem="cfs-T4-BYb" firstAttribute="leading" secondItem="nxp-Ji-VeF" secondAttribute="leading" constant="151" id="xYQ-57-62g"/>
+                            <constraint firstItem="cfs-T4-BYb" firstAttribute="leading" secondItem="nxp-Ji-VeF" secondAttribute="leading" constant="128" id="xYQ-57-62g"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nxp-Ji-VeF"/>
                     </view>
@@ -282,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEe-9I-t4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757.60000000000002" y="-55.322338830584712"/>
+            <point key="canvasLocation" x="765" y="-158.45070422535213"/>
         </scene>
         <!--Location Confirm View Controller-->
         <scene sceneID="2of-No-1Q0">

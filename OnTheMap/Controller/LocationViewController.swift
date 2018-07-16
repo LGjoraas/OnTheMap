@@ -57,6 +57,7 @@ class LocationViewController: UIViewController {
                     self.longitude = coordinates.longitude
                     self.showLocationConfirmVC()
                 } else {
+                    UIViewController.removeSpinner(spinner: self.view)
                     AlertController.showAlert(inViewController: self, title: "Error Found", message: "Your location could not be found.")
                     print("Error with location entered = \(error)")
                 }

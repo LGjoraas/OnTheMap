@@ -30,7 +30,7 @@ extension Client {
                     }
                 })
             } else {
-                completionHandlerForLogin(success, "retrieve key error") 
+                completionHandlerForLogin(success, "connection failure")
             }
         }
     }

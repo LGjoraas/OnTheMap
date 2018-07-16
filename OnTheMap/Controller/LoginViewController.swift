@@ -46,10 +46,13 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         guard let email = emailTextField.text, email != "" else { return }
         guard let password = passwordTextField.text, password != "" else { return }
         
-        Client.sharedInstance().loginToUdacity(username: email, password: password) { (success, error) in
+        Client.sharedInstance.loginToUdacity(username: email, password: password) { (success, error) in
             performUIUpdatesOnMain {
                 if success {
                     self.completeLogin()
+                }
+                else if error == "connection failure" {
+                    AlertController.showAlert(inViewController: self, title: "Connection failure", message: "Connection failed. Check your internet settings.")
                 }
                 else {
                     AlertController.showAlert(inViewController: self, title: "Error Found", message: "Invalid login information entered.")
@@ -70,7 +73,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     // MARK: Unwind back to Map and Table Views
     
     @IBAction func unwindMapTableViews(segue: UIStoryboardSegue) {
-        Client.sharedInstance().deleteSessionIDToLogout { (success) in
+        Client.sharedInstance.deleteSessionIDToLogout { (success) in
             performUIUpdatesOnMain {
                 if success {
                     self.viewDidLoad()

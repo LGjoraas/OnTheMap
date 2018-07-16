@@ -32,12 +32,7 @@ class Client: NSObject {
     
     
     // MARK: Singleton
-    class func sharedInstance() -> Client {
-        struct Singleton {
-            static var sharedInstance = Client()
-        }
-        return Singleton.sharedInstance
-    }
+      static let sharedInstance = Client()
     
     
     // MARK : Parse API
@@ -64,7 +59,11 @@ class Client: NSObject {
     
     func taskForGETMethod(completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-        let url = URL(string: Constants.Parse.GetPostURL)
+        let getURL = Constants.Parse.GetPostURL
+        let addToSort = "?limit=100&order=-updatedAt"  // add this to the URL so that server will sort the data to the most recent 100
+        
+        let urlString = getURL + addToSort
+        let url = URL(string: urlString)
         
         /* 2/3. Build the URL, Configure the request */
         var request = URLRequest(url: url!)

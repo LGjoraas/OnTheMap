@@ -29,17 +29,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             var annotations = [MKPointAnnotation]()
             
             
-            //let locations = Client.sharedInstance().getStudentLocations()
-            //print(locations)
             // The "locations" array is an array of dictionary objects that are similar to the JSON
             // data that you can download from parse.
-            Client.sharedInstance().getStudentLocations { (locations, error) in
+            Client.sharedInstance.getStudentLocations { (locations, error) in
                 if let error = error {
-                    print("ERROR = \(error)")
+                    AlertController.showAlert(inViewController: self, title: "Connection failure", message: "Could not download student locations.  Check your internet settings.")
                 }
                 else if let locations = locations {
                   
-
                     
                     // The "locations" array is loaded with the sample data below. We are using the dictionaries
                     // to create map annotations. This would be more stylish if the dictionaries were being

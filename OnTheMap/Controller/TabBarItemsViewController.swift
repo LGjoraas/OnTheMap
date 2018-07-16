@@ -25,7 +25,8 @@ class TabBarItemsViewController: UITabBarController {
         // Refresh the views of each controller simultaneously.
         for controller in controllers! {
             //controller.loadView()
-            controller.viewDidLoad()
+            //controller.viewDidLoad()
+            controller.viewWillAppear(true) // this should refresh and retrieve all student locations again from the MapViewController viewWillAppear function 
         }
     }
     

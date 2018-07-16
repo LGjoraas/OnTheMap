@@ -73,7 +73,7 @@ class LocationConfirmViewController: UIViewController, MKMapViewDelegate {
     // MARK: Finish Button Pressed and back to Tab View
 
     @IBAction func finishPressed(_ sender: Any) {
-        Client.sharedInstance().postNewStudentLocation(locationName: locationAdded!, url:
+        Client.sharedInstance.postNewStudentLocation(locationName: locationAdded!, url:
         urlAdded!, latitude: latitudeAdded!, longitude: longitudeAdded!) { (success, error) in
             if success {
                 print("added new location")

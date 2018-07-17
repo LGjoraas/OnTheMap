@@ -29,9 +29,8 @@ extension Client {
                         completionHandlerForLogin(success, "retrieve names error")
                     }
                 })
-            } else {
-                completionHandlerForLogin(success, "connection failure")
             }
+            completionHandlerForLogin(success, errorMessage)
         }
     }
     
@@ -50,6 +49,7 @@ extension Client {
         let task = session.dataTask(with: request) { data, response, error in
             /* GUARD: was there an error? */
             guard (error == nil) else {
+                completionHandlerForSessionID(false, "", "", "connection failure")
                 return
             }
             
@@ -74,6 +74,7 @@ extension Client {
             }
             
             guard let sessionDict = result["session"] as? [String:AnyObject] else {
+                completionHandlerForSessionID(false, "", "", "connection failure")
                 print("Udacity login API could not find session")
                 return
             }

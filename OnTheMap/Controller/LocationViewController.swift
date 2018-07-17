@@ -50,7 +50,7 @@ class LocationViewController: UIViewController {
                     self.longitude = coordinates.longitude
                     self.showLocationConfirmVC()
                 } else {
-                    UIViewController.removeSpinner(spinner: self.view)
+                    UIViewController.removeSpinner(spinner: sv)
                     AlertController.showAlert(inViewController: self, title: "Error Found", message: "Your location could not be found.")
                     print("Error with location entered = \(error)")
                 }
@@ -139,11 +139,12 @@ extension UIViewController {
             onView.addSubview(spinnerView)
         }
         return spinnerView
+        
     }
     
     class func removeSpinner(spinner :UIView) {
         DispatchQueue.main.async {
-            spinner.removeFromSuperview()
+        spinner.removeFromSuperview()
         }
     }
 }
